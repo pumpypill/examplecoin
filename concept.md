@@ -1,0 +1,3 @@
+## Introduction
+
+This project will be humurously nihlistic in the nature of its content. It will be called "examplesite.fun". We can refer to it as "Example". This will be for a memecoin called "Example Coin". The joke or the main narrative at play is to poke fun at copy and paste projects. So, all content on the website should basically exist to describe the purpose of the section. For example, the hero can say "THIS SECTION IS VERY IMPORTANT FOR GRASPING ATTENTION" (do not use that exactly, be more creative) 

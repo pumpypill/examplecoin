@@ -654,7 +654,54 @@ const ExampleCoin = {
     }
 };
 
-// Optimized initialization with error handling
+// Copy contract address function
+function copyContract() {
+    const contractAddress = document.getElementById('contractAddress');
+    const copyBtn = document.querySelector('.copy-btn');
+    
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(contractAddress.textContent).then(() => {
+            showCopyFeedback(copyBtn, 'COPIED!');
+        }).catch(() => {
+            fallbackCopyTextToClipboard(contractAddress.textContent, copyBtn);
+        });
+    } else {
+        fallbackCopyTextToClipboard(contractAddress.textContent, copyBtn);
+    }
+}
+
+function fallbackCopyTextToClipboard(text, btn) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    textArea.style.position = "fixed";
+    textArea.style.left = "-999999px";
+    textArea.style.top = "-999999px";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+        document.execCommand('copy');
+        showCopyFeedback(btn, 'COPIED!');
+    } catch (err) {
+        showCopyFeedback(btn, 'FAILED!');
+    }
+    
+    document.body.removeChild(textArea);
+}
+
+function showCopyFeedback(btn, message) {
+    const originalText = btn.innerHTML;
+    btn.innerHTML = `<span class="copy-icon">✅</span><span class="copy-text">${message}</span>`;
+    btn.style.background = 'rgba(40, 167, 69, 0.3)';
+    
+    setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.background = '';
+    }, 2000);
+}
+
+// Initialize when DOM is ready
 function initializeExampleCoin() {
     try {
         if (document.readyState === 'loading') {
